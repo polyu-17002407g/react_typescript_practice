@@ -1,14 +1,9 @@
-type User = {
-    id: number;
-    name: string;
-    age: number;
-    personsalColor: string;
-  };
+import type { User } from "../types/user";
 
 export const ListItem = (props: User) => {
-    const { id, name, age, personsalColor } = props;
+    const { id, name, age, personalColor } = props;
     return (
-        <p style={{ color: personsalColor }}>
+        <p style={{ color: personalColor }}>
             {id}: {name} ({age})
         </p>
     )
