@@ -17,8 +17,13 @@ function App() {
   return (
     <div>
       {users.map(user => (
-        <ListItem id={user.id} name={user.name} age={user.age}
-        personalColor={user.personalColor} />
+        <ListItem
+          id={user.id}
+          name={user.name}
+          age={user.age}
+          personalColor={user.personalColor}
+          hobbies={user.hobbies}
+         />
       ))}
     </div>
   );
