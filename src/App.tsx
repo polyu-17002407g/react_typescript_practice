@@ -1,36 +1,8 @@
-import { useState } from 'react';
-import { ListItem } from './components/ListItem';
-import axios from 'axios';
-import mock from './mocks/$mock.js'
-import type { User } from "./types/user";
-
-mock();
+import { useFetchUsers } from "./hooks/useFetchUsers";
 
 function App() {
-  const [userList, setUserList] = useState<User[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-
-  const onClickFetchUser = () => {
-    setIsLoading(true);
-    setIsError(false);
-
-    axios
-      .get<User[]>("https://example.com/users")
-      .then(result => {
-        const users = result.data.map(user => ({
-          id: user.id,
-          firstname: user.firstname,
-          lastname: user.lastname,
-          name: `${user.lastname}.${user.firstname}.`,
-          age: user.age
-        }));
-        setUserList(users);
-      })
-      .catch(() => setIsError(true))
-      .finally(() => setIsLoading(false));
-  };
-
+  const { userList, onClickFetchUser, isError, isLoading } = useFetchUsers();
+  
   return (
     <div>
       <button onClick={onClickFetchUser}>Get Users</button>
